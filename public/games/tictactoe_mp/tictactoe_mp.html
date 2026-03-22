@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #87CEEB;
+            --accent: #260cee;
+            --x-color: #ff7675;
+            --o-color: #55efc4;
+        }
+
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            display: flex; flex-direction: column; align-items: center; 
+            background: var(--bg); color: #ffffff; height: 100vh; 
+            justify-content: center; margin: 0; overflow: hidden;
+        }
+
+        .room-tag {
+            background: rgba(2, 1, 14, 0.2);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            border: 1px solid var(--accent);
+        }
+
+        #status { margin-bottom: 20px; font-size: 1.1rem; color: #888; height: 1.5rem; }
+
+        .board { 
+            display: grid; grid-template-columns: repeat(3, 100px); gap: 10px; 
+            padding: 20px; background:rgba(255,255,255,0.3); border-radius: 15px;
+        }
+        
+        .cell { 
+            width: 100px; height: 100px; background: #ffffff; 
+            display: flex; justify-content: center; align-items: center; 
+            font-size: 3rem; cursor: pointer; border-radius: 20%; 
+            transition: 0.2s;
+        }
+        
+        .cell:hover { background: #2a2a2e; border-color: var(--accent); }
+        .cell.disabled { cursor: not-allowed; }
+
+        /* OVERLAYS */
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); display: flex; 
+            flex-direction: column; justify-content: center; align-items: center;
+            z-index: 1000;
+        }
+
+        .card {
+            background: #16161a; padding: 40px; border-radius: 20px;
+            text-align: center; border: 1px solid #333;
+        }
+
+        .btn {
+            background: var(--accent); color: white; border: none;
+            padding: 12px 25px; border-radius: 8px; font-weight: bold;
+            cursor: pointer; margin-top: 20px;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div class="room-tag">Room Code: <span id="display-code">...</span></div>
+    <div id="status">Connecting to server...</div>
+
+    <div class="board" id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div>
+
+    <!-- GAME OVER OVERLAY -->
+    <div id="game-over-overlay" class="overlay hidden">
+        <div class="card">
+            <h2 id="result-text">Waiting...</h2>
+            <p id="rematch-status">Waiting for players (0/2)</p>
+            <p id="timer-text">Closing in: <span id="seconds">10</span>s</p>
+            <button class="btn" id="rematch-btn">Rematch</button>
+        </div>
+    </div>
+
+    <!-- SOCKET.IO MUST BE LOADED -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="tictactoe_mp.js"></script>
+</body>
+</html>

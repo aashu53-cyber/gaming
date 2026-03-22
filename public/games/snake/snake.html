@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="snake.png" type="image/x-icon">
+    <script src="snake.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <div id="menu-screen" class="overlay">
+            <img src="snake.png" alt="Snake" class="menu-img">
+            <h2 id="menu-title">Snake Classic</h2>
+            <button id="start-btn" class="btn">Start Game</button>
+        </div>
+
+        <div class="board" id="board"></div>
+
+        <div class="bottom-ui">
+            <div class="scores">
+                <p>Score: <span id="score">0</span></p>
+                <p>High: <span id="high-score">0</span></p>
+            </div>
+            <button class="reset-btn" id="restart-btn">Restart</button>
+        </div>
+    </div>
+</body>
+</html>

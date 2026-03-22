@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Games | Multiplayer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+
+    <header class="top-nav">
+        <div class="nav-left">
+            <div class="menu-icon"><i class="fas fa-bars"></i></div>
+            <div class="logo">PORTAL<span>GAMES</span></div>
+        </div>
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search games...">
+        </div>
+        <div class="nav-right"></div>
+    </header>
+
+    <!-- Sidebar Container (Empty) -->
+    <aside class="sidebar">
+        <nav class="side-icons" id="sidebar-nav"></nav>
+    </aside>
+
+    <main class="main-content">
+        <section class="game-section">
+            <div class="section-header"><h2>Featured Games</h2></div>
+            <!-- Game Grid Container (Empty) -->
+            <div class="featured-row" id="game-grid"></div>
+        </section>
+    </main>
+
+    <!-- ROOM MODAL (Same as before) -->
+    <div id="gameModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="modalTitle">Game Name</h2>
+            <button class="modal-btn btn-host" onclick="hostGame()">Create Room</button>
+            <div class="join-divider"><span>OR JOIN</span></div>
+            <div class="join-input-group">
+                <input type="text" id="roomCodeInput" maxlength="5" placeholder="CODE">
+                <button class="modal-btn btn-join" onclick="joinGame()">Join Match</button>
+            </div>
+            <button class="close-link" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/data.js"></script>       <!-- The raw data (arrays) -->
+<script src="js/sidebar.js"></script>    <!-- Sidebar logic -->
+<script src="js/gameLoader.js"></script> <!-- Game grid & Modal logic -->
+<script src="js/main.js"></script>       <!-- The 'Brain' that starts it all -->
+
+<!-- GAME THEATER OVERLAY -->
+<div id="game-theater" class="theater-overlay">
+    <div class="theater-content">
+        <div class="theater-header">
+            <h3 id="theater-title">Game Name</h3>
+            <button class="close-theater" onclick="closeTheater()"><i class="fas fa-times"></i> Close Game</button>
+        </div>
+        <!-- This is where the game loads -->
+        <iframe id="game-frame" src="" frameborder="0"></iframe>
+    </div>
+</div>
+
+</body>
+</html>

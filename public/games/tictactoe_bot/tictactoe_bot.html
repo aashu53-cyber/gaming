@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe - Sky Edition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sky-blue: #87CEEB;
+            --cloud-white: #ffffff;
+            --sun-orange: #ff9f43;
+            --deep-blue: #2e86de;
+        }
+
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            background: linear-gradient(180deg, #87CEEB 0%, #E0F7FA 100%); 
+            color: #2c3e50; 
+            height: 100vh; 
+            justify-content: center; 
+            margin: 0; 
+            overflow: hidden;
+        }
+
+        h1 { color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 10px; }
+
+        /* THE BOARD */
+        .board { 
+            display: grid; 
+            grid-template-columns: repeat(3, 100px); 
+            gap: 12px; 
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        /* CLOUD CELLS */
+        .cell { 
+            width: 100px; height: 100px; 
+            background: var(--cloud-white); 
+            display: flex; justify-content: center; align-items: center; 
+            font-size: 3rem; cursor: pointer; 
+            border-radius: 20px; 
+            border: none;
+            box-shadow: 0 6px 0px #cbdadb; /* Shadow makes it look like a physical button */
+            transition: 0.1s; 
+            font-weight: bold;
+        }
+        
+        .cell:hover { background: #fdfdfd; transform: scale(1.02); }
+        .cell:active { transform: translateY(4px); box-shadow: 0 2px 0px #cbdadb; }
+
+        #status { 
+            margin-top: 25px; 
+            font-size: 1.2rem; 
+            font-weight: 600; 
+            color: white; 
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+        }
+        
+        /* OVERLAYS */
+        .game-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(46, 134, 222, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 100;
+        }
+
+        .menu-card {
+            background: white; padding: 40px; border-radius: 30px;
+            text-align: center; width: 90%; max-width: 350px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .menu-btn {
+            width: 100%; padding: 15px; margin: 10px 0; border: none;
+            border-radius: 15px; font-size: 1rem; font-weight: bold;
+            cursor: pointer; transition: 0.2s;
+        }
+        .btn-primary { background: var(--deep-blue); color: white; }
+        .btn-outline { background: #f0f7ff; color: #555; }
+        
+        .hidden { display: none !important; }
+
+        .back-btn {
+            margin-top: 30px; background: none; border: none; 
+            color: white; cursor: pointer; text-decoration: underline; 
+            font-weight: bold; opacity: 0.8;
+        }
+        .back-btn:hover { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <h1>Sky Tic-Tac-Toe</h1>
+    
+    <div class="board" id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div>
+
+    <div id="status">Press Start</div>
+
+    <button onclick="exitToDashboard()" class="back-btn">Back to Dashboard</button>
+
+    <!-- START MENU -->
+    <div id="start-menu" class="game-overlay">
+        <div class="menu-card">
+            <h2 style="color:var(--deep-blue)">Ready to Play?</h2>
+            <p style="color:#777; margin-bottom: 25px;">You are playing against the Bot</p>
+            <button class="menu-btn btn-primary" onclick="startGame()">Start Game</button>
+        </div>
+    </div>
+
+    <!-- RESULT MENU -->
+    <div id="result-menu" class="game-overlay hidden">
+        <div class="menu-card">
+            <h1 id="result-text" style="color:var(--deep-blue)">You Win!</h1>
+            <button class="menu-btn btn-primary" onclick="resetGame()">Play Again</button>
+            <button class="menu-btn btn-outline" onclick="exitToDashboard()">Exit Game</button>
+        </div>
+    </div>
+
+    <script src="tictactoe_bot.js"></script>
+</body>
+</html>
