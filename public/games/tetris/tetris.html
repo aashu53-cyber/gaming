@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER TETRIS</title>
+    <link rel="stylesheet" href="tetris-style.css">
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- Larger Stats Panel -->
+    <div class="side-panel">
+        <div class="panel-box">
+            <div class="panel-label">Score</div>
+            <div class="panel-value" id="score">0</div>
+        </div>
+        <div class="panel-box">
+            <div class="panel-label">Level</div>
+            <div class="panel-value" id="level">1</div>
+        </div>
+    </div>
+
+    <!-- Main Game Area (17x22) -->
+    <div class="game-area">
+        <div class="game-title">CYBER TETRIS</div>
+        <!-- 425 width (17x25) x 550 height (22x25) -->
+        <canvas id="gameCanvas" width="425" height="550"></canvas>
+        <div class="scanlines"></div>
+
+        <div class="overlay" id="startOverlay">
+            <div class="overlay-title">CYBER TETRIS</div>
+            <button class="start-btn" onclick="startGameManual()">START GAME</button>
+            <button class="start-btn exit-btn" onclick="closeTheater()">DASHBOARD</button>
+        </div>
+
+        <div class="overlay hidden" id="gameOverOverlay">
+            <div class="overlay-title" style="color:#ff006e">GAME OVER</div>
+            <button class="start-btn" onclick="startGameManual()">RESTART</button>
+            <button class="start-btn exit-btn" onclick="closeTheater()">EXIT</button>
+        </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+        <div class="panel-box">
+            <div class="panel-label">Next</div>
+            <canvas id="nextCanvas" width="100" height="100"></canvas>
+        </div>
+        <div class="panel-box control-hint">
+            <div class="panel-label">Controls</div>
+            <div class="controls-text">
+                SPACE: DROP<br>
+                UP: ROTATE<br>
+                ARROWS: MOVE
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="tetris.js"></script>
+</body>
+</html>

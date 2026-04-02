@@ -14,6 +14,13 @@ const games = [
         colorClass: 'ttt-bg', 
         type: 'multi' 
     },
+        { 
+        id: 'tetris',
+        name: 'Cyber Tetris', 
+        meta: '2 Players • Multiplayer', 
+        colorClass: 'tetris-bg', 
+        type: 'single' 
+    },
     { 
         id: 'snake', 
         name: 'Snake retro', 

@@ -1,6 +1,6 @@
 module.exports = (io, socket) => {
     socket.on('joinRoom', (data) => {
-        // Handle both string or object input
+    
         const roomCode = (typeof data === 'string') ? data : data.roomCode;
         
         if (!roomCode) {

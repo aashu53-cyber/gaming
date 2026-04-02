@@ -1,6 +1,8 @@
 // js/gameLoader.js
-let activeGameId = null; // Globally accessible in this file
 
+let activeGameId = null; // Tracks current game selection for MP room linking
+
+/** Builds the game grid UI from the games data array */
 function renderGameGrid() {
     const gameGrid = document.getElementById('game-grid');
     if (!gameGrid) return;
@@ -15,57 +17,55 @@ function renderGameGrid() {
     `).join('');
 }
 
+/** Decides to launch singleplayer or show the multiplayer modal */
 function selectGame(id) {
-    activeGameId = id; // Store the ID of the game clicked (e.g., 'tictactoe_mp')
+    activeGameId = id; 
     const gameData = games.find(g => g.id === id);
 
     if (gameData.type === 'single') {
         launchSingleplayerGame(id);
     } else {
-        // Show Modal
         document.getElementById('modalTitle').innerText = gameData.name;
         document.getElementById('gameModal').style.display = 'flex';
     }
 }
 
+/** Launches multiplayer by passing roomCode to iFrame via URL */
 function launchMultiplayerGame(roomCode) {
-    console.log("Launching MP for Game ID:", activeGameId, "Room:", roomCode);
-    
-    if (!activeGameId) {
-        console.error("No active game ID found!");
-        return;
-    }
+    if (!activeGameId) return console.error("No active game ID!");
 
     const gameData = games.find(g => g.id === activeGameId);
-    
-    // 1. Set the Title in the Theater
     document.getElementById('theater-title').innerText = `${gameData.name} - Room: ${roomCode}`;
     
-    // 2. Set the iFrame Source with the Room Code
     const frame = document.getElementById('game-frame');
     frame.src = `/games/${gameData.id}/${gameData.id}.html?room=${roomCode}`;
     
-    // 3. UI Transitions
     closeModal();
-    document.getElementById('game-theater').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    openTheaterUI();
 }
 
-// Helper functions
+/** Launches local game directly into the theater iFrame */
 function launchSingleplayerGame(id) {
     const gameData = games.find(g => g.id === id);
     document.getElementById('theater-title').innerText = gameData.name;
     document.getElementById('game-frame').src = `/games/${id}/${id}.html`;
+    openTheaterUI();
+}
+
+/** Shows game overlay and disables background scrolling */
+function openTheaterUI() {
     document.getElementById('game-theater').style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
 
+/** Hides the room selection modal */
 function closeModal() {
     document.getElementById('gameModal').style.display = 'none';
 }
 
+/** Exits game, clears iFrame source to stop processes, and restores scrolling */
 function closeTheater() {
     document.getElementById('game-theater').style.display = 'none';
-    document.getElementById('game-frame').src = "";
+    document.getElementById('game-frame').src = ""; 
     document.body.style.overflow = 'auto';
 }

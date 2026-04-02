@@ -1,14 +1,16 @@
+
+<!--MAIN DASHBOARD FILE-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Games | Multiplayer</title>
+    <title>BRAIN SNACKS</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="dark-theme">
 
+<body class="dark-theme">
     <header class="top-nav">
         <div class="nav-left">
             <div class="menu-icon"><i class="fas fa-bars"></i></div>
@@ -21,7 +23,7 @@
         <div class="nav-right"></div>
     </header>
 
-    <!-- Sidebar Container (Empty) -->
+    <!-- Sidebar Container -->
     <aside class="sidebar">
         <nav class="side-icons" id="sidebar-nav"></nav>
     </aside>
@@ -29,12 +31,12 @@
     <main class="main-content">
         <section class="game-section">
             <div class="section-header"><h2>Featured Games</h2></div>
-            <!-- Game Grid Container (Empty) -->
+            <!-- Game Grid Container -->
             <div class="featured-row" id="game-grid"></div>
         </section>
     </main>
 
-    <!-- ROOM MODAL (Same as before) -->
+    <!-- ROOM MODAL -->
     <div id="gameModal" class="modal-overlay">
         <div class="modal-content">
             <h2 id="modalTitle">Game Name</h2>
@@ -52,7 +54,7 @@
 <script src="js/data.js"></script>       <!-- The raw data (arrays) -->
 <script src="js/sidebar.js"></script>    <!-- Sidebar logic -->
 <script src="js/gameLoader.js"></script> <!-- Game grid & Modal logic -->
-<script src="js/main.js"></script>       <!-- The 'Brain' that starts it all -->
+<script src="js/main.js"></script>       <!-- The 'Brain' that starts SERVER -->
 
 <!-- GAME THEATER OVERLAY -->
 <div id="game-theater" class="theater-overlay">
@@ -61,8 +63,8 @@
             <h3 id="theater-title">Game Name</h3>
             <button class="close-theater" onclick="closeTheater()"><i class="fas fa-times"></i> Close Game</button>
         </div>
-        <!-- This is where the game loads -->
-        <iframe id="game-frame" src="" frameborder="0"></iframe>
+        <!-- Game load area -->
+        <iframe id="game-frame" src="" frameborder="0"></iframe> 
     </div>
 </div>
 
